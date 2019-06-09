@@ -1,6 +1,29 @@
-import match from './match.js'
+import config from './config.js'
+import Axios from './Axios'
 
-export default function printMe() {
-  console.log(match);
+function axios (options) {
+	let opts = merger(options,config)
+	return Axios(opts)
 }
-console.log('ok')
+
+axios.create = function(){
+	return axios()
+}
+
+let methods = ['get','post']
+
+methods.forEach((i)=> {
+	// console.log(i)
+}) 
+
+
+function merger(opt,config) {
+	for(let name in opt) {
+		config[name] = opt[name]
+	}
+	return config
+}
+
+
+// export default axios
+window.axios = axios

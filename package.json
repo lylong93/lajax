@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node ./server/server.js",
-    "webpack":"webpack --config ./server/webpack.config.js"
+    "webpack": "webpack --config ./server/webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/lylong93/lajax#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "webpack-dev-middleware": "^3.7.0"
   },

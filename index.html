@@ -4,6 +4,14 @@
 	<title></title>
 </head>
 <body>
-	<script src="/__build__/main.js"></script>
+	<script type="text/javascript">
+		let http = new XMLHttpRequest()
+
+		http.open('get','http://localhost:8000/test',true)
+
+		http.send()
+
+		console.log(http.response)
+	</script>
 </body>
 </html>

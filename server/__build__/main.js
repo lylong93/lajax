@@ -86,27 +86,39 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/Axios.js":
+/*!**********************!*\
+  !*** ./src/Axios.js ***!
+  \**********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (function(opts) {\r\n\tlet {method,url,data} = opts\r\n\r\n\treturn new Promise ((resolve,reject)=> {\r\n\t\tlet xhr =new XMLHttpRequest()\r\n\r\n\t\txhr.open('post',url,true)\r\n\r\n\t\txhr.setRequestHeader(\"Content-Type\",\"application/json; charset=utf-8\"); \r\n\r\n\t\tlet res = {ck:1,one:1}\r\n\t\tlet oo = {ok:1}\r\n\t\tconsole.log(typeof(oo))\r\n\t\tlet no = JSON.stringify(oo)\r\n\t\tconsole.log(typeof(no))\r\n\t\txhr.send(JSON.stringify(res))\r\n\r\n\t\txhr.onload = function() {\r\n\t\t\tif(xhr.readyState === 4) {\r\n\r\n\t\t\t\tlet {response,status,statusText} = xhr\r\n\r\n\t\t\t\tlet _headers = xhr.getAllResponseHeaders().split('\\r\\n')\r\n\t\t\t\t_headers.pop() // 去掉最后一个空\r\n\r\n\t\t\t\tlet headers =_headers.reduce((pre,cur)=> {\r\n\t\t\t\t\tlet [name,val] = cur.split(':')\r\n\t\t\t\t\t pre[name.trim()] = val.trim()\r\n\t\t\t\t\t return pre\r\n\t\t\t\t},{})\r\n\t\t\t\t\r\n\t\t\t\tlet data = {\r\n\t\t\t\t\tdata:response,\r\n\t\t\t\t\tstatus,\r\n\t\t\t\t\tstatusText,\r\n\t\t\t\t\theaders,\r\n\t\t\t\t\tconfig:{},\r\n\t\t\t\t}\r\n\t\t\t\tresolve(data)\r\n\t\t\t}\r\n\t\t}\r\n\t})\r\n});\n\n//# sourceURL=webpack:///./src/Axios.js?");
+
+/***/ }),
+
+/***/ "./src/config.js":
+/*!***********************!*\
+  !*** ./src/config.js ***!
+  \***********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\nlet defaultConfig ={\r\n\tmethod:'get',\r\n\theaders: {'Content-Type': 'application/json; charset=utf-8'},\r\n\ttimeout:200,\r\n\turl:'/',\r\n\tresponseType:'json'\r\n}\r\n\r\n/* harmony default export */ __webpack_exports__[\"default\"] = (defaultConfig);\n\n//# sourceURL=webpack:///./src/config.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/*! exports provided: default */
+/*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return printMe; });\n/* harmony import */ var _match_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./match.js */ \"./src/match.js\");\n\r\n\r\nfunction printMe() {\r\n  console.log(_match_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\r\n}\r\nconsole.log('ok')\n\n//# sourceURL=webpack:///./src/index.js?");
-
-/***/ }),
-
-/***/ "./src/match.js":
-/*!**********************!*\
-  !*** ./src/match.js ***!
-  \**********************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nfunction test (argument) {\r\n\tconsole.log('te')\r\n}\r\n/* harmony default export */ __webpack_exports__[\"default\"] = (test);\n\n//# sourceURL=webpack:///./src/match.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./config.js */ \"./src/config.js\");\n/* harmony import */ var _Axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Axios */ \"./src/Axios.js\");\n\r\n\r\n\r\nfunction axios (options) {\r\n\tlet opts = merger(options,_config_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])\r\n\treturn Object(_Axios__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(opts)\r\n}\r\n\r\naxios.create = function(){\r\n\treturn axios()\r\n}\r\n\r\nlet methods = ['get','post']\r\n\r\nmethods.forEach((i)=> {\r\n\t// console.log(i)\r\n}) \r\n\r\n\r\nfunction merger(opt,config) {\r\n\tfor(let name in opt) {\r\n\t\tconfig[name] = opt[name]\r\n\t}\r\n\treturn config\r\n}\r\n\r\n\r\n// export default axios\r\nwindow.axios = axios\r\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 
