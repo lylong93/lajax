@@ -1,20 +1,26 @@
 export default function(opts) {
-	let {method,url,data} = opts
+	let {method,url,data,headers} = opts
 
 	return new Promise ((resolve,reject)=> {
 		let xhr =new XMLHttpRequest()
 
-		xhr.open('post',url,true)
+		if(method==='get') {
+			url = url +'?'
+			for(let name in data) {
+				url=`${url}${name}=${data[name]}&`
+			}
+			url=url.substring(0,url.length-1)
+		}
+		xhr.open(method,url,true)
 
-		xhr.setRequestHeader("Content-Type","application/json; charset=utf-8"); 
+		xhr.setRequestHeader("Content-Type",headers["Content-Type"]); 
 
-		let res = {ck:1,one:1}
-		let oo = {ok:1}
-		console.log(typeof(oo))
-		let no = JSON.stringify(oo)
-		console.log(typeof(no))
-		xhr.send(JSON.stringify(res))
-
+		if(method==='post') {
+			xhr.send(JSON.stringify(data))
+		} else {
+			xhr.send()
+		}
+		
 		xhr.onload = function() {
 			if(xhr.readyState === 4) {
 

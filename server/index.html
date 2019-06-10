@@ -7,6 +7,15 @@
 	<script src="./main.js"></script>
 	<!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
 	<script type="text/javascript">
+
+		// axios.interceptors.request.use(config => {
+		// 	console.log(config)
+		// 	return config
+		// })
+		axios.befor(config=> {
+			return config
+		})
+
 		axios({
 			url:'/test',
 			method: 'post',
