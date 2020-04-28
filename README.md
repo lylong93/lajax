@@ -1,1 +1,2 @@
 # lajax
+closed
